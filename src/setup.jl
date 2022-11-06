@@ -15,7 +15,7 @@ function define(;
     CS = fill(1.0,numControls)
 )::NLOpt
 
-    n = NLOpt()
+    n = NLOpt_realization()
 
     # validate input
     if numControls <= 0
