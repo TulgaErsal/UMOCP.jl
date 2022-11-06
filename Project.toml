@@ -1,7 +1,7 @@
 name = "UMOCP"
 uuid = "f72bd255-fa4e-4a75-acd7-6780b8a32298"
 authors = ["Tulga Ersal", "Congkai Shen", "Siyuan Yu"]
-version = "0.1.0"
+version = "1.0.0"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
