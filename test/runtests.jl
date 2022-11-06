@@ -1,4 +1,3 @@
-using .UMOCP
 using Test
 
 @testset "UMOCP.jl" begin
