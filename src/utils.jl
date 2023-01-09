@@ -1,11 +1,3 @@
-function try_import(name::Symbol)
-    try
-        @eval using $name
-        return true
-    catch e
-    end
-end
-
 
 function intervals(n::NLOpt,int,x,u)
 
@@ -251,10 +243,12 @@ function evalConstraints!(n::NLOpt)
 
             end
         else
+
             S=0
             try
                 S=JuMP.size(n.r.ocp.constraint.handle[i])
             catch
+                println(n.r.ocp.constraint.name[i])
                 error("\n For now, the constraints cannot be in this form: \n
                 con=@NLconstraint(mdl,n.r.ocp.u[1,1]==param); \n
                 Write it in array form: \n
@@ -267,7 +261,7 @@ function evalConstraints!(n::NLOpt)
                     handle_key = axes(n.r.ocp.constraint.handle[i])[1]
                     dual_con = Vector{NonlinearConstraintRef{ScalarShape}}[]
                     for key in handle_key
-                        dual_con = [dual_con; n.r.ocp.constraint.handle[6][key]]
+                        dual_con = [dual_con; n.r.ocp.constraint.handle[end][key]]
                     end
                     con = DataFrame(step=1:length(n.r.ocp.constraint.handle[i]); Dict(n.r.ocp.constraint.name[i] => dual.(dual_con))...)
                   else
@@ -356,6 +350,7 @@ function postProcess!(n::NLOpt; kwargs...)
         end
         if n.s.ocp.evalConstraints && n.r.ocp.status != INFEASIBLE && n.r.ocp.status != LOCALLY_INFEASIBLE && n.r.ocp.status != OTHER_ERROR # note may want to remove the && arg
             evalConstraints!(n)
+            
             # # TODO: Evaluated constraints in n.r.ocp.constraints
             # if n.s.ocp.evalCostates && n.s.ocp.integrationMethod == :ps
             #     L1 = 0       # find index where dynamics constraints start
@@ -382,7 +377,12 @@ function postProcess!(n::NLOpt; kwargs...)
         end
 
         if n.s.ocp.save && stateDataExists
-            push!(n.r.ocp.dfs,dvs2dfs(n))
+            if n.s.ocp.InternalLogging
+                push!(n.r.ocp.dfs,dvs2dfs(n))
+            else
+                n.r.ocp.dfs = Vector{DataFrame}()
+                push!(n.r.ocp.dfs,dvs2dfs(n))
+            end
         end
     end
 

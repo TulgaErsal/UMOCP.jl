@@ -3,14 +3,15 @@ using DataFrames
 using Parameters
 using MadNLP
 # These functions are required for NLOptMPC.jl and PrettyPlots.jl (resultsDir!)
-export  State,
-        Control,
-        Constraint,
-        Results,
-        Settings,
-        _Ipopt_defaults,
-        _Ipopt_MPC,
-        NLOpt_realization
+# export  State,
+#         Control,
+#         Constraint,
+#         Results,
+#         Settings,
+#         _Ipopt_defaults,
+#         _Ipopt_MPC,
+#         simulationModes,
+#         MPC
 
 # IPOPT Settings
 # :print_level      : Print level
@@ -161,6 +162,7 @@ end
     interpolationOn::Bool       = false             # bool to indicate if user wants solution interpolated for them
     x0slackVariables::Bool      = false             #
     xFslackVariables::Bool      = false             #
+    InternalLogging::Bool       = false             #
 end
 #
 # # Optimal Control Problem (OCP) Flags
@@ -253,4 +255,4 @@ end
 end
 #
 # # Default Number subtype is Float64
-NLOpt_realization() = NLOpt{Float64}()
+NLOpt() = NLOpt{Float64}()
