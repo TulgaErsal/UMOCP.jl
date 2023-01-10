@@ -255,4 +255,4 @@ end
 end
 #
 # # Default Number subtype is Float64
-NLOpt() = NLOpt{Float64}()
+NLOpt_realization() = NLOpt{Float64}()
