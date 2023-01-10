@@ -346,11 +346,11 @@ function postProcess!(n::NLOpt; kwargs...)
                 n.r.ocp.U[:,ctr] = value.(n.r.ocp.u[:,ctr])
             end
         else
-            @warn "The solution is not Optimal \n"
+            # @warn "The solution is not Optimal \n"
         end
         if n.s.ocp.evalConstraints && n.r.ocp.status != INFEASIBLE && n.r.ocp.status != LOCALLY_INFEASIBLE && n.r.ocp.status != OTHER_ERROR # note may want to remove the && arg
             evalConstraints!(n)
-            
+
             # # TODO: Evaluated constraints in n.r.ocp.constraints
             # if n.s.ocp.evalCostates && n.s.ocp.integrationMethod == :ps
             #     L1 = 0       # find index where dynamics constraints start
