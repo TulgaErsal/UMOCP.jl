@@ -13,7 +13,7 @@ function define(;
     CU = fill(NaN,numControls)
 )::NLOpt
 
-    n = NLOpt()
+    n = NLOptRealization()
 
     # validate input
     if numControls <= 0

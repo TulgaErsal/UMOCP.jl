@@ -208,4 +208,4 @@ end
 end
 #
 # # Default Number subtype is Float64
-NLOpt() = NLOpt{Float64}()
+NLOptRealization() = NLOpt{Float64}()
