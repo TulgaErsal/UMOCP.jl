@@ -4,15 +4,15 @@ module UMOCP
 
 using JuMP
 import JuMP: value,
-             @NLexpression,
-             @NLobjective,
-             @NLparameter,
-             @NLconstraint,
+             @expression,
+             @objective,
+             @parameter,
+             @constraint,
              Model
-export @NLexpression,
-       @NLobjective,
-       @NLparameter,
-       @NLconstraint,
+export @expression,
+       @objective,
+       @parameter,
+       @constraint,
        value,
        Model
 
@@ -47,12 +47,12 @@ export create_tV!
 export initConstraint!
 export newConstraint!
 export integrate!
-export NLoptimize!
-export evalConstraints!
+export OCPoptimize!
 export postProcess!
 export opt2dfs!
 export dvs2dfs
-export try_import
+export WarmStart
+export RetrieveSolveStatus
 
 include("setup.jl")
 export define
@@ -72,11 +72,5 @@ export addCon
 export NLExpr
 export NLCon
 
-
-
-include("parameter.jl")
-include("ThreeDOF_Bicycle.jl")
-export ThreeDOFBicycle_expr
-export ThreeDOF_clay_nn_expr
 
 end
