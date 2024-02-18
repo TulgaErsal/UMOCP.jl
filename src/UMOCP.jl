@@ -6,15 +6,15 @@ using JuMP
 import JuMP: value,
              @expression,
              @objective,
-             @parameter,
              @constraint,
+             set_start_value,
              Model
 export @expression,
        @objective,
-       @parameter,
        @constraint,
        value,
-       Model
+       Model,
+       set_start_value
 
 
 using FastGaussQuadrature

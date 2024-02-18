@@ -3,7 +3,6 @@ include("math.jl")
 include("setup.jl")
 include("ps.jl")
 include("diffeq.jl")
-using Ipopt
 
 function intervals(n::NLOpt,int,x,u)
 

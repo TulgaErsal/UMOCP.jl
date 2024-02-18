@@ -2,6 +2,8 @@ using JuMP
 using DataFrames
 using Parameters
 using Ipopt
+using LinearAlgebra
+using FastGaussQuadrature
 # These functions are required for NLOptMPC.jl and PrettyPlots.jl (resultsDir!)
 # export  State,
 #         Control,
